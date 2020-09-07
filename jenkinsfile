@@ -5,25 +5,25 @@ pipeline
        
        stage('preparation') {
             steps {
-                git 'https://github.com/YaraAmrallah/Booster_CI_CD_Project'
+                git 'https://github.com/SandroNael/Booster_CI_CD_Project'
             }
         }
         stage('build image') {
             steps {
-              sh 'docker build -f dockerfile . -t SandroNael/django_app:v1.0 .'
+              sh 'docker build -f dockerfile . -t sandronael/django_app:v1.0 .'
             	  }
                             }
         stage('push image') { 
             steps {
               withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:"USERNAME",passwordVariable:"PASSWORD")]){
               sh 'docker login --username $USERNAME --password $PASSWORD'
-              sh 'docker push SandroNael/django_app:v1.0'
+              sh 'docker push sandronael/django_app:v1.0'
                                                                                                                                  }
                   }
                             }
         stage('deploy') {
           steps {
-            sh 'docker run -d -p 4000:4000 SandroNael/django_app:v1.0'
+            sh 'docker run -d -p 4000:4000 sandronael/django_app:v1.0'
                 } 
                         }
            }
