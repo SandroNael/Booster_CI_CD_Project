@@ -9,20 +9,20 @@ stage('preparation') {
         }
         stage('build image') {
             steps {
-              sh 'docker build -f dockerfile . -t sandronael/django_appDev:v1.0 .'
+              sh 'docker build -f dockerfile . -t sandronael/django_appdev:v1.0 .'
             	  }
            		      }
         stage('push image') {
             steps {
               withCredentials([usernamePassword(credentialsId:"dockerhub",usernameVariable:"USERNAME",passwordVariable:"PASSWORD")]){
               sh 'docker login --username $USERNAME --password $PASSWORD'
-              sh 'docker push sandronael/django_appDev:v1.0'
+              sh 'docker push sandronael/django_appdev:v1.0'
               															      }		
             	  }
         		     }
         stage('deploy') {
           steps {
-            sh 'docker run -d -p 3000:3000 sandronael/django_appDev:v1.0'
+            sh 'docker run -d -p 3000:3000 sandronael/django_appdev:v1.0'
         	}
         		 }
     	      }
