@@ -1,0 +1,23 @@
+FROM ubuntu
+USER root
+RUN apt-get update -qq
+RUN mkdir -p jenkins_home
+RUN chmod 777 jenkins_home
+RUN useradd -ms /bin/bash jenkins
+RUN apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common 
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+RUN add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    focal\
+    stable"
+RUN apt-get update  -qq 
+RUN apt-get install -y docker-ce docker-ce-cli containerd.io
+RUN usermod -aG docker jenkins
+RUN apt-get update -qq
+RUN apt-get -y install python3.6
+RUN apt-get -qqy install python3-pip
+RUN apt-get install openjdk-8-jdk -qq
+RUN apt-get install openssh-server -qq
+USER jenkins
+WORKDIR jenkins_home
+CMD ["/bin/bash"]
