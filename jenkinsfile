@@ -22,7 +22,7 @@ stage('preparation') {
         		     }
         stage('deploy') {
           steps {
-            sh 'docker run -d -p 3000:3000 SandroNael/django_appDev:v1.0'
+            sh 'docker run -d -p 3000:3000 sandronael/django_appDev:v1.0'
         	}
         		 }
     	      }
