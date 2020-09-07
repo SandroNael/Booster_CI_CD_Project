@@ -22,7 +22,7 @@ pipeline {
         }
          stage('Deploy') {
             steps {
-                sh 'docker run -d -p 3000:3000 sandronael/django_appdev:v1.0'
+                sh 'docker run -d -p 4000:3000 sandronael/django_appdev:v1.0'
             }  
     }
   }
