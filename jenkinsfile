@@ -2,11 +2,7 @@ pipeline
 {
     agent {label 'slave'}
     stages {
-stage('preparation') {
-            steps {
-                git 'https://github.com/SandroNael/Booster_CI_CD_Project'
-            }
-        }
+
         stage('build image') {
             steps {
               sh 'docker build -f dockerfile . -t sandronael/django_appdev:v1.0'
